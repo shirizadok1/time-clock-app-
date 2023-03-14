@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import EmployeeDash from "./components/EmployeeDash";
+import EmployerDash from "./components/EmployerDash";
+import React from "react";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [sectionName, setSectionName] = useState<string>();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+      <div className="container">
+        <h1>Report Application</h1>
+        <h2 className="text-muted">Click to show the relevant dashboard</h2>
+
+        <div>
+          <button className='btn btn-outline-primary'
+                  onClick={() => setSectionName('EmployerDash')}>Show EmployerDash Section
+          </button>
+          <button className='btn btn-outline-secondary'
+                  onClick={() => setSectionName('EmployeeDash')}>Show Employee
+            Section
+          </button>
+        </div>
+        <hr/>
+        {sectionName === 'EmployerDash' && <EmployerDash/>}
+        {sectionName === 'EmployeeDash' && <EmployeeDash/>}
+      </div>
+  )
+};
 
 export default App;
