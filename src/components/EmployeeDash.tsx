@@ -77,9 +77,9 @@ const EmployeeDash = () => {
                 <ul>
                   {report.hours.map((day, dayIndex) => (
                     <li key={day.date.getTime()}>
-                      {day.date.toLocaleDateString()}:{' '}
-                      {day.start ? day.start.toLocaleTimeString() : '-'} -{' '}
-                      {day.end ? day.end.toLocaleTimeString() : '-'}{' '}
+                      {day.date.toLocaleString()}:{' '}
+                      {day.start ? day.start.toLocaleString() : '-'} -{' '}
+                      {day.end ? day.end.toLocaleString() : '-'}{' '}
                       {day.start && (
                         <button onClick={() => handleStartEdit(reportIndex, dayIndex)}>
                           Edit Start

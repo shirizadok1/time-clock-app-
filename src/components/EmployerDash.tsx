@@ -47,9 +47,9 @@ const EmployerDash = () => {
   };
 
   return (
-    <div>
-      <h2>Monthly Report for Each Employee</h2>
-      <table>
+    <div className="my-4">
+      <h2 className="mb-4">Monthly Report for Each Employee</h2>
+      <table className="table table-bordered">
         <thead>
           <tr>
             <th>Name</th>
@@ -81,24 +81,26 @@ const EmployerDash = () => {
         </tbody>
       </table>
 
-      <h2>Add New Employee</h2>
-      <form onSubmit={handleNewEmployeeSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
+      <h2 className="mt-4 mb-2">Add New Employee</h2>
+      <form onSubmit={handleNewEmployeeSubmit} className="row g-3">
+        <div className="col-md-4">
+          <label htmlFor="name" className="form-label">Name:</label>
           <input
             type="text"
             id="name"
+            className="form-control"
             value={newEmployee.name}
             onChange={(event) =>
               setNewEmployee({ ...newEmployee, name: event.target.value })
             }
           />
         </div>
-        <div>
-          <label htmlFor="monthlyHours">Monthly Hours:</label>
+        <div className="col-md-4">
+          <label htmlFor="monthlyHours" className="form-label">Monthly Hours:</label>
           <input
             type="number"
             id="monthlyHours"
+            className="form-control"
             value={newEmployee.monthlyHours}
             onChange={(event) =>
               setNewEmployee({
@@ -108,7 +110,9 @@ const EmployerDash = () => {
             }
           />
         </div>
-        <button type="submit">Add Employee</button>
+        <div className="col-md-4 d-flex align-items-end">
+          <button type="submit" className="btn btn-primary">Add Employee</button>
+        </div>
       </form>
     </div>
   );

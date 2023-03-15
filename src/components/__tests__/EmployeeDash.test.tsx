@@ -63,7 +63,7 @@ describe('EmployeeDash component', () => {
     fireEvent.click(viewReportButton);
     const editStartButton = screen.getAllByText('Edit Start')[0];
     fireEvent.click(editStartButton);
-    expect(JSON.parse(localStorage.getItem('monthlyReport'))[0].hours[0].start).toBeDefined();
+    expect(JSON.parse(localStorage.getItem('monthlyReport')!)[0].hours[0].start).toBeDefined();
   });
 
   it('should allow the user to edit the stop time of a day when the Edit End button is clicked', () => {
@@ -71,6 +71,6 @@ describe('EmployeeDash component', () => {
     fireEvent.click(viewReportButton);
     const editEndButton = screen.getAllByText('Edit End')[0];
     fireEvent.click(editEndButton);
-    expect(JSON.parse(localStorage.getItem('monthlyReport'))[0].hours[0].end).toBeDefined();
+    expect(JSON.parse(localStorage.getItem('monthlyReport')!)[0].hours[0].end).toBeDefined();
   });
 });
