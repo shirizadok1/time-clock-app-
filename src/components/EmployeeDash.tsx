@@ -83,7 +83,7 @@ const EmployeeDash = () => {
                   <h3>{report.name}</h3>
                   <ul className="list-unstyled mt-3">
                     {report.hours.map((day, dayIndex) => (
-                      <li key={day.date.getTime()} className="mb-2">
+                      <li key={day.date instanceof Date ? day.date.getTime() : day.date} className="mb-2">
                         {day.date.toLocaleString()}:{' '}
                         {day.start ? day.start.toLocaleString() : '-'} -{' '}
                         {day.end ? day.end.toLocaleString() : '-'}{' '}
