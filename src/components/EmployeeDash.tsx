@@ -51,11 +51,18 @@ const EmployeeDash = () => {
       <div className="row">
         {startTime ? (
           <div className="col-12 mb-3">
-            <p>Start Time: {startTime.toLocaleString()}</p>
+            <p data-testid="start-time-label">
+              Start Time: {startTime.toLocaleString()}
+            </p>
           </div>
         ) : (
           <div className="col-12 mb-3">
-            <button className="btn btn-primary" onClick={() => setStartTime(new Date())}>Start Clock</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => setStartTime(new Date())}
+            >
+              Start Clock
+            </button>
           </div>
         )}
         {stopTime ? (
@@ -64,16 +71,25 @@ const EmployeeDash = () => {
           </div>
         ) : (
           <div className="col-12 mb-3">
-            <button className="btn btn-primary" onClick={() => setStopTime(new Date())} disabled={isStopDisabled}>
+            <button
+              className="btn btn-primary"
+              onClick={() => setStopTime(new Date())}
+              disabled={isStopDisabled}
+            >
               Stop Clock
             </button>
           </div>
         )}
-  
+
         <div className="col-12 mb-3">
-          <button className="btn btn-secondary" onClick={() => setShowReport(!showReport)}>View Monthly Report</button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setShowReport(!showReport)}
+          >
+            View Monthly Report
+          </button>
         </div>
-  
+
         {showReport && (
           <div className="col-12">
             <h2 className="mt-4">Monthly Report</h2>
@@ -83,17 +99,34 @@ const EmployeeDash = () => {
                   <h3>{report.name}</h3>
                   <ul className="list-unstyled mt-3">
                     {report.hours.map((day, dayIndex) => (
-                      <li key={day.date instanceof Date ? day.date.getTime() : day.date} className="mb-2">
-                        {day.date.toLocaleString()}:{' '}
-                        {day.start ? day.start.toLocaleString() : '-'} -{' '}
-                        {day.end ? day.end.toLocaleString() : '-'}{' '}
+                      <li
+                        key={
+                          day.date instanceof Date
+                            ? day.date.getTime()
+                            : day.date
+                        }
+                        className="mb-2"
+                      >
+                        {day.date.toLocaleString()}:{" "}
+                        {day.start ? day.start.toLocaleString() : "-"} -{" "}
+                        {day.end ? day.end.toLocaleString() : "-"}{" "}
                         {day.start && (
-                          <button className="btn btn-sm btn-primary" onClick={() => handleStartEdit(reportIndex, dayIndex)}>
+                          <button
+                            className="btn btn-sm btn-primary"
+                            onClick={() =>
+                              handleStartEdit(reportIndex, dayIndex)
+                            }
+                          >
                             Edit Start
                           </button>
                         )}
                         {day.end && (
-                          <button className="btn btn-sm btn-primary mx-2" onClick={() => handleStopEdit(reportIndex, dayIndex)}>
+                          <button
+                            className="btn btn-sm btn-primary mx-2"
+                            onClick={() =>
+                              handleStopEdit(reportIndex, dayIndex)
+                            }
+                          >
                             Edit End
                           </button>
                         )}

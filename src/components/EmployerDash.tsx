@@ -47,12 +47,12 @@ const EmployerDash = () => {
   };
 
   return (
-    <div className="my-4">
+    <div data-testid="employer-dash" className="my-4">
       <h2 className="mb-4">Monthly Report for Each Employee</h2>
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th>Name</th>
+            <th data-testid="">Name</th>
             <th>Monthly Hours</th>
             <th>Total Monthly Hours</th>
           </tr>
@@ -82,9 +82,11 @@ const EmployerDash = () => {
       </table>
 
       <h2 className="mt-4 mb-2">Add New Employee</h2>
-      <form onSubmit={handleNewEmployeeSubmit} className="row g-3">
+      <form data-testid="add-employee-form"onSubmit={handleNewEmployeeSubmit} className="row g-3">
         <div className="col-md-4">
-          <label htmlFor="name" className="form-label">Name:</label>
+          <label  data-testid="name-employee-form"htmlFor="name" className="form-label">
+            Name:
+          </label>
           <input
             type="text"
             id="name"
@@ -96,7 +98,9 @@ const EmployerDash = () => {
           />
         </div>
         <div className="col-md-4">
-          <label htmlFor="monthlyHours" className="form-label">Monthly Hours:</label>
+          <label htmlFor="monthlyHours" className="form-label">
+            Monthly Hours:
+          </label>
           <input
             type="number"
             id="monthlyHours"
@@ -111,7 +115,9 @@ const EmployerDash = () => {
           />
         </div>
         <div className="col-md-4 d-flex align-items-end">
-          <button type="submit" className="btn btn-primary">Add Employee</button>
+          <button type="submit" className="btn btn-primary">
+            Add Employee
+          </button>
         </div>
       </form>
     </div>
