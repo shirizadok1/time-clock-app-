@@ -61,7 +61,7 @@ const EmployeeDash = () => {
               className="btn btn-primary"
               onClick={() => setStartTime(new Date())}
             >
-              Start Clock
+              Start work
             </button>
           </div>
         )}
@@ -76,7 +76,7 @@ const EmployeeDash = () => {
               onClick={() => setStopTime(new Date())}
               disabled={isStopDisabled}
             >
-              Stop Clock
+              End work
             </button>
           </div>
         )}
