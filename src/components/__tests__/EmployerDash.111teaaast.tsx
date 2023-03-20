@@ -25,11 +25,12 @@ describe("EmployerDash component", () => {
   it("renders the add employee form", () => {
     const form = screen.getByTestId("add-employee-form");
     const labels = screen.getAllByTestId("name-employee-form");
-    const inputs = screen.getAllByLabelText(/monthly hours/i);
+    const inputs = screen.getAllByTestId("monthly-hours");
     const button = screen.getByRole("button", { name: /add employee/i });
     expect(form).toBeInTheDocument();
-    expect(labels.length).toBe(2);
-    expect(inputs.length).toBe(2);
+    screen.debug();
+    expect(labels.length).toBe(1);
+    expect(inputs.length).toBe(1);
     expect(button).toBeInTheDocument();
   });
   

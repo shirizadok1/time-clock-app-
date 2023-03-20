@@ -82,9 +82,17 @@ const EmployerDash = () => {
       </table>
 
       <h2 className="mt-4 mb-2">Add New Employee</h2>
-      <form data-testid="add-employee-form"onSubmit={handleNewEmployeeSubmit} className="row g-3">
+      <form
+        data-testid="add-employee-form"
+        onSubmit={handleNewEmployeeSubmit}
+        className="row g-3"
+      >
         <div className="col-md-4">
-          <label  data-testid="name-employee-form"htmlFor="name" className="form-label">
+          <label
+            data-testid="name-employee-form"
+            htmlFor="name"
+            className="form-label"
+          >
             Name:
           </label>
           <input
@@ -102,6 +110,7 @@ const EmployerDash = () => {
             Monthly Hours:
           </label>
           <input
+            data-testid="monthly-hours"
             type="number"
             id="monthlyHours"
             className="form-control"
