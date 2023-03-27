@@ -124,7 +124,11 @@ const EmployerDash = () => {
           />
         </div>
         <div className="col-md-4 d-flex align-items-end">
-          <button type="submit" className="btn btn-primary">
+          <button
+            data-testid="add-employee"
+            type="submit"
+            className="btn btn-primary"
+          >
             Add Employee
           </button>
         </div>

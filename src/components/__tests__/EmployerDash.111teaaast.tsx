@@ -26,7 +26,7 @@ describe("EmployerDash component", () => {
     const form = screen.getByTestId("add-employee-form");
     const labels = screen.getAllByTestId("name-employee-form");
     const inputs = screen.getAllByTestId("monthly-hours");
-    const button = screen.getByRole("button", { name: /add employee/i });
+    const button = screen.getAllByTestId("add-employee");
     expect(form).toBeInTheDocument();
     screen.debug();
     expect(labels.length).toBe(1);
@@ -37,9 +37,9 @@ describe("EmployerDash component", () => {
   describe("when submitting the add employee form", () => {
     const mockEmployee = { name: "John Doe", hours: [160] };
     beforeEach(() => {
-      const nameInput = screen.getByLabelText(/employee name/i);
-      const hoursInput = screen.getByLabelText(/monthly hours/i);
-      const submitButton = screen.getByRole("button", { name: /add employee/i });
+      const nameInput = screen.getAllByTestId("name-employee-form");
+      const hoursInput = screen.getAllByTestId("monthly-hours");
+      const submitButton = screen.getAllByTestId("add-employee");
       const mockEvent = { preventDefault: jest.fn() };
       fireEvent.change(nameInput, { target: { value: mockEmployee.name } });
       fireEvent.change(hoursInput, { target: { value: mockEmployee.hours[0] } });
