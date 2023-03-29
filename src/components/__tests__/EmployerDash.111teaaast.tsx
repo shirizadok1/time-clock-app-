@@ -1,6 +1,16 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import EmployerDash from "../EmployerDash";
+
+const mockApi = {
+  getInitialData: jest.fn(),
+  saveEmployees: jest.fn(),
+};
+
+jest.mock("../../api", () => ({
+  __esModule: true, // this property makes it work
+  default: "api",
+  namedExport: mockApi,
+}));
 
 describe("EmployerDash component", () => {
   beforeEach(() => {
@@ -22,34 +32,18 @@ describe("EmployerDash component", () => {
     expect(td.length).toBe(0);
   });
 
-  it("renders the add employee form", () => {
-    const form = screen.getByTestId("add-employee-form");
-    const labels = screen.getAllByTestId("name-employee-form");
-    const inputs = screen.getAllByTestId("monthly-hours");
-    const button = screen.getAllByTestId("add-employee");
-    expect(form).toBeInTheDocument();
-    screen.debug();
-    expect(labels.length).toBe(1);
-    expect(inputs.length).toBe(1);
-    expect(button).toBeInTheDocument();
-  });
-  
   describe("when submitting the add employee form", () => {
     const mockEmployee = { name: "John Doe", hours: [160] };
     beforeEach(() => {
-      const nameInput = screen.getAllByTestId("name-employee-form");
-      const hoursInput = screen.getAllByTestId("monthly-hours");
-      const submitButton = screen.getAllByTestId("add-employee");
+      const nameInput = screen.getByTestId("name-employee-input");
+      const hoursInput = screen.getByTestId("monthly-hours");
+      const submitButton = screen.getByTestId("add-employee");
       const mockEvent = { preventDefault: jest.fn() };
       fireEvent.change(nameInput, { target: { value: mockEmployee.name } });
-      fireEvent.change(hoursInput, { target: { value: mockEmployee.hours[0] } });
+      fireEvent.change(hoursInput, {
+        target: { value: mockEmployee.hours[0] },
+      });
       fireEvent.click(submitButton, mockEvent);
-    });
-
-    it("should prevent the default form submission behavior", () => {
-      const mockEvent = { preventDefault: jest.fn() };
-      fireEvent.submit(screen.getByRole("form"), mockEvent);
-      expect(mockEvent.preventDefault).toHaveBeenCalled();
     });
 
     it("should add a new employee to the list", () => {

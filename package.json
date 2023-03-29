@@ -47,5 +47,8 @@
     "moduleNameMapper": {
       "axios": "axios/dist/node/axios.cjs"
     }
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.21.3"
   }
 }

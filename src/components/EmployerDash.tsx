@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
-interface Employee {
-  id: string;
-  name: string;
-  hours: { date: string; start: string; end: string }[];
-}
+import api from "../api";
+import { Employee } from "../types";
 
 const EmployerDash = () => {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -17,9 +12,9 @@ const EmployerDash = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("api/data.json");
-        console.log(response.data);
-        setEmployees(response.data.data);
+        const employees = await api.getInitalData();
+        console.log(employees);
+        setEmployees(employees);
       } catch (error) {
         console.error(error);
       }
@@ -41,7 +36,7 @@ const EmployerDash = () => {
 
     const updatedEmployees = [...employees, newEmployee];
 
-    localStorage.setItem("employees", JSON.stringify(updatedEmployees));
+    api.saveEmployees(updatedEmployees);
     setEmployees(updatedEmployees);
     console.log(updatedEmployees);
   };
@@ -83,19 +78,17 @@ const EmployerDash = () => {
 
       <h2 className="mt-4 mb-2">Add New Employee</h2>
       <form
+        name="form"
         data-testid="add-employee-form"
         onSubmit={handleNewEmployeeSubmit}
         className="row g-3"
       >
         <div className="col-md-4">
-          <label
-            data-testid="name-employee-form"
-            htmlFor="name"
-            className="form-label"
-          >
+          <label htmlFor="name" className="form-label">
             Name:
           </label>
           <input
+            data-testid="name-employee-input"
             type="text"
             id="name"
             className="form-control"
