@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
-interface Report {
-  id: number;
-  name: string;
-  hours: Array<{
-    date: Date;
-    start?: Date;
-    end?: Date;
-  }>;
-}
+import { api } from "../api";
+import { Report } from "../types";
 
 const EmployeeDash = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
@@ -22,10 +13,7 @@ const EmployeeDash = () => {
     if (monthlyReportFromStorage) {
       setMonthlyReport(JSON.parse(monthlyReportFromStorage));
     } else {
-      axios
-        .get<Report[]>("/api/data.json")
-        .then((res) => setMonthlyReport(res.data))
-        .catch((err) => console.log(err));
+      api.getReport().then((res) => res && setMonthlyReport(res));
     }
   }, []);
 
@@ -66,7 +54,7 @@ const EmployeeDash = () => {
           </div>
         )}
         {stopTime ? (
-          <div className="col-12 mb-3">
+          <div className="col-12 mb-3" data-testid="stop-time-label">
             <p>Stop Time: {stopTime.toLocaleString()}</p>
           </div>
         ) : (

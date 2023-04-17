@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import EmployerDash from "../EmployerDash";
 
-const mockApi = {
+const mockApi1 = {
   getInitialData: jest.fn(),
   saveEmployees: jest.fn(),
 };
@@ -9,7 +9,7 @@ const mockApi = {
 jest.mock("../../api", () => ({
   __esModule: true, // this property makes it work
   default: "api",
-  namedExport: mockApi,
+  namedExport: mockApi1,
 }));
 
 describe("EmployerDash component", () => {
