@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { api } from "../api";
+import { useEffect, useState } from "react";
+import api from "../api";
 import { Report } from "../types";
 
 const EmployeeDash = () => {
@@ -19,14 +19,14 @@ const EmployeeDash = () => {
 
   const handleStartEdit = (reportIndex: number, dayIndex: number) => {
     const updatedMonthlyReport = [...monthlyReport];
-    updatedMonthlyReport[reportIndex].hours[dayIndex].start = new Date();
+    updatedMonthlyReport[reportIndex].hours[dayIndex].start = new Date().toISOString();
     localStorage.setItem("monthlyReport", JSON.stringify(updatedMonthlyReport));
     setMonthlyReport(updatedMonthlyReport);
   };
 
   const handleStopEdit = (reportIndex: number, dayIndex: number) => {
     const updatedMonthlyReport = [...monthlyReport];
-    updatedMonthlyReport[reportIndex].hours[dayIndex].end = new Date();
+    updatedMonthlyReport[reportIndex].hours[dayIndex].end = new Date().toISOString();
     localStorage.setItem("monthlyReport", JSON.stringify(updatedMonthlyReport));
     setMonthlyReport(updatedMonthlyReport);
   };

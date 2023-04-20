@@ -6,7 +6,7 @@ export interface Report {
     name: string;
     hours: Array<{
       date: Date;
-      start?: Date;
-      end?: Date;
+      start?: string;
+      end?: string;
     }>;
   }

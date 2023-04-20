@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Employee, Report } from "./types";
 
-export const api = {
+const api = {
   getInitalData: async () => {
     const response = await axios.get<{ data: Employee[] }>("api/data.json");
     return response.data.data;
@@ -18,4 +18,6 @@ export const api = {
       .catch((err) => console.log(err));
   },
 };
+
+export default api;
 
