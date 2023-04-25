@@ -24,6 +24,7 @@ const EmployerDash = () => {
   }, []);
 
   const handleNewEmployeeSubmit = async (
+    // it is an instance of the React.FormEvent class, which represents events that occur on HTML form elements
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();

@@ -11,7 +11,7 @@ const EmployeeDash = () => {
   useEffect(() => {
     const monthlyReportFromStorage = localStorage.getItem("monthlyReport");
     if (monthlyReportFromStorage) {
-      setMonthlyReport(JSON.parse(monthlyReportFromStorage));
+      setMonthlyReport(JSON.parse(monthlyReportFromStorage)); //turns to Javascript object
     } else {
       api.getReport().then((res) => res && setMonthlyReport(res));
     }
@@ -19,14 +19,16 @@ const EmployeeDash = () => {
 
   const handleStartEdit = (reportIndex: number, dayIndex: number) => {
     const updatedMonthlyReport = [...monthlyReport];
-    updatedMonthlyReport[reportIndex].hours[dayIndex].start = new Date().toISOString();
+    updatedMonthlyReport[reportIndex].hours[dayIndex].start =
+      new Date().toISOString();
     localStorage.setItem("monthlyReport", JSON.stringify(updatedMonthlyReport));
     setMonthlyReport(updatedMonthlyReport);
   };
 
   const handleStopEdit = (reportIndex: number, dayIndex: number) => {
     const updatedMonthlyReport = [...monthlyReport];
-    updatedMonthlyReport[reportIndex].hours[dayIndex].end = new Date().toISOString();
+    updatedMonthlyReport[reportIndex].hours[dayIndex].end =
+      new Date().toISOString();
     localStorage.setItem("monthlyReport", JSON.stringify(updatedMonthlyReport));
     setMonthlyReport(updatedMonthlyReport);
   };
@@ -95,6 +97,7 @@ const EmployeeDash = () => {
                         }
                         className="mb-2"
                       >
+                        {/* If the start time or end is missing, a dash ("-") is displayed in its place */}
                         {day.date.toLocaleString()}:{" "}
                         {day.start ? day.start.toLocaleString() : "-"} -{" "}
                         {day.end ? day.end.toLocaleString() : "-"}{" "}

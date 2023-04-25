@@ -1,6 +1,7 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import { Report } from "../../types";
 
+// This is done to ensure that the EmployeeDash component receives the expected data when it is rendered
 jest.mock("../../api", () => ({
   getReport: () =>
     Promise.resolve<Report[]>([
