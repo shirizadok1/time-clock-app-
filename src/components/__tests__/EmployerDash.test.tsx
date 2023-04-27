@@ -39,6 +39,7 @@ describe("EmployerDash component", () => {
       const hoursInput = screen.getByTestId("monthly-hours");
       const submitButton = screen.getByTestId("add-employee");
       const mockEvent = { preventDefault: jest.fn() };
+      // The target property is used to specify which input field is being changed by the fireEvent.change function
       fireEvent.change(nameInput, { target: { value: mockEmployee.name } });
       fireEvent.change(hoursInput, {
         target: { value: mockEmployee.hours[0] },

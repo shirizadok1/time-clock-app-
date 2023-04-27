@@ -16,6 +16,7 @@ jest.mock("../../api", () => ({
 import EmployeeDash from "../EmployeeDash";
 
 describe("EmployeeDash component", () => {
+  // These variables are used to store references to specific elements in the rendered output of the component.
   let startButton: HTMLElement;
   let stopButton: HTMLElement;
   beforeEach(() => {
