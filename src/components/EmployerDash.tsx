@@ -24,7 +24,6 @@ const EmployerDash = () => {
   }, []);
 
   const handleNewEmployeeSubmit = async (
-    // it is an instance of the React.FormEvent class, which represents events that occur on HTML form elements
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
@@ -48,7 +47,7 @@ const EmployerDash = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th data-testid="">Name</th>
+            <th>Name</th>
             <th>Monthly Hours</th>
             <th>Total Monthly Hours</th>
           </tr>
@@ -65,7 +64,7 @@ const EmployerDash = () => {
                 <td>{employee.name}</td>
                 <td>
                   {employee.hours.map((day) => (
-                    <div>
+                    <div key={day.date}>
                       {day.date}: {day.start} - {day.end}
                     </div>
                   ))}

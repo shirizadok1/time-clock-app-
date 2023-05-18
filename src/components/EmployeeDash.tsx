@@ -83,11 +83,11 @@ const EmployeeDash = () => {
         {showReport && (
           <div className="col-12">
             <h2 className="mt-4">Monthly Report</h2>
-            <ul className="list-unstyled mt-3">
+            <ul className="list-group mt-3">
               {monthlyReport.map((report, reportIndex) => (
-                <li key={report.id} className="my-3">
+                <li key={report.id} className="list-group-item my-3">
                   <h3>{report.name}</h3>
-                  <ul className="list-unstyled mt-3">
+                  <ul className="list-group mt-3">
                     {report.hours.map((day, dayIndex) => (
                       <li
                         key={
@@ -95,12 +95,14 @@ const EmployeeDash = () => {
                             ? day.date.getTime()
                             : day.date
                         }
-                        className="mb-2"
+                        className="list-group-item d-flex justify-content-between align-items-center mb-2"
                       >
                         {/* If the start time or end is missing, a dash ("-") is displayed in its place */}
-                        {day.date.toLocaleString()}:{" "}
-                        {day.start ? day.start.toLocaleString() : "-"} -{" "}
-                        {day.end ? day.end.toLocaleString() : "-"}{" "}
+                        <span>
+                          {day.date.toLocaleString()}:{" "}
+                          {day.start ? day.start.toLocaleString() : "-"} -{" "}
+                          {day.end ? day.end.toLocaleString() : "-"}
+                        </span>
                         {day.start && (
                           <button
                             className="btn btn-sm btn-primary"
@@ -113,7 +115,7 @@ const EmployeeDash = () => {
                         )}
                         {day.end && (
                           <button
-                            className="btn btn-sm btn-primary mx-2"
+                            className="btn btn-sm btn-primary"
                             onClick={() =>
                               handleStopEdit(reportIndex, dayIndex)
                             }
